@@ -5,7 +5,7 @@ import lombok.*;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.Gender;
 import umc.spring.domain.enums.MemberStatus;
-import umc.spring.domain.enums.Status;
+import umc.spring.domain.enums.MemberStatus;
 import umc.spring.domain.mapping.UserMission;
 
 import java.time.LocalDate;

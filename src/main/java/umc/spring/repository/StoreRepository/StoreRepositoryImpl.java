@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import umc.spring.domain.Restaurant;
 import umc.spring.domain.QRestaurant;
-import umc.spring.domain.Restaurant;
 
 import java.util.List;
 
