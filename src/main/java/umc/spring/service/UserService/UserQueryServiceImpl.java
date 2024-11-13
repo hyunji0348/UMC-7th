@@ -13,6 +13,6 @@ public class UserQueryServiceImpl implements UserQueryService {
 
     @Override
     public Optional<User> getUserProfile(Long userId) {
-        return userRepository.dynamicQueryWithBooleanBuilder(userId);
+        return userRepository.findUserByDynamicCondition(userId);
     }
 }

@@ -1,7 +1,5 @@
 package umc.spring.repository.UserRepository;
 
-package umc.spring.repository;
-
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +16,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
     private final QUser user = QUser.user;
 
     @Override
-    public Optional<User> dynamicQueryWithBooleanBuilder(Long userId) {
+    public Optional<User> findUserByDynamicCondition(Long userId) {
         BooleanBuilder predicate = new BooleanBuilder();
 
         if (userId != null) {
