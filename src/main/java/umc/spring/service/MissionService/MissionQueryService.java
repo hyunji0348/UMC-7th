@@ -1,11 +1,11 @@
 package umc.spring.service.MissionService;
 
-import umc.spring.domain.mapping.UserMission;
+import umc.spring.domain.mapping.MemberMission;
 
 import java.util.List;
 
 public interface MissionQueryService {
-    List<UserMission> getInProgressMissions(Long userId, int page);
-    List<UserMission> getCompletedMissions(Long userId, int page);
-    List<UserMission> getCurrentInProgressMissions(Long userId);
+    List<MemberMission> getInProgressMissions(Long memberId, int page);
+    List<MemberMission> getCompletedMissions(Long memberId, int page);
+    List<MemberMission> getCurrentInProgressMissions(Long memberId);
 }

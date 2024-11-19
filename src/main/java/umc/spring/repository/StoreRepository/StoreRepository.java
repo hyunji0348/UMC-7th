@@ -1,7 +1,7 @@
 package umc.spring.repository.StoreRepository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import umc.spring.domain.Restaurant;
+import umc.spring.domain.Store;
 
-public interface StoreRepository extends JpaRepository<Restaurant, Long>, StoreRepositoryCustom {
+public interface StoreRepository extends JpaRepository<Store, Long> {
 }

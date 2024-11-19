@@ -3,11 +3,13 @@ package umc.spring.service.StoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import umc.spring.domain.Restaurant;
+import umc.spring.domain.Mission;
+import umc.spring.domain.Store;
+import umc.spring.repository.MissionRepository.MissionRepository;
 import umc.spring.repository.StoreRepository.StoreRepository;
 
-import java.util.List;
 import java.util.Optional;
+
 
 @Service
 @RequiredArgsConstructor
@@ -15,18 +17,15 @@ import java.util.Optional;
 public class StoreQueryServiceImpl implements StoreQueryService{
 
     private final StoreRepository storeRepository;
+    private final MissionRepository missionRepository;
 
     @Override
-    public Optional<Restaurant> findStore(Long id) {
+    public Optional<Store> findStore(Long id) {
         return storeRepository.findById(id);
     }
 
     @Override
-    public List<Restaurant> findStoresByNameAndScore(String name, Float score) {
-        List<Restaurant> filteredStores = storeRepository.dynamicQueryWithBooleanBuilder(name, score);
-
-        filteredStores.forEach(store -> System.out.println("Store: " + store));
-
-        return filteredStores;
+    public Optional<Mission> findMission(Long id) {
+        return missionRepository.findById(id);
     }
 }

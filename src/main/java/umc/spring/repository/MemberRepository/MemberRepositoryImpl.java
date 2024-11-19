@@ -1,30 +1,30 @@
-package umc.spring.repository.UserRepository;
+package umc.spring.repository.MemberRepository;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import umc.spring.domain.QUser;
-import umc.spring.domain.User;
+import umc.spring.domain.Member;
+import umc.spring.domain.QMember;
 
 import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class UserRepositoryImpl implements UserRepositoryCustom {
+public class MemberRepositoryImpl implements MemberRepositoryCustom {
     private final JPAQueryFactory jpaQueryFactory;
-    private final QUser user = QUser.user;
+    private final QMember member = QMember.member;
 
     @Override
-    public Optional<User> findUserByDynamicCondition(Long userId) {
+    public Optional<Member> findMemberByDynamicCondition(Long memberId) {
         BooleanBuilder predicate = new BooleanBuilder();
 
-        if (userId != null) {
-            predicate.and(user.id.eq(userId));
+        if (memberId != null) {
+            predicate.and(member.id.eq(memberId));
         }
 
-        User result = jpaQueryFactory
-                .selectFrom(user)
+        Member result = jpaQueryFactory
+                .selectFrom(member)
                 .where(predicate)
                 .fetchOne();
 

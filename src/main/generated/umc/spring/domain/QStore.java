@@ -11,62 +11,58 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QRestaurant is a Querydsl query type for Restaurant
+ * QStore is a Querydsl query type for Store
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QRestaurant extends EntityPathBase<Restaurant> {
+public class QStore extends EntityPathBase<Store> {
 
-    private static final long serialVersionUID = 1563043049L;
+    private static final long serialVersionUID = 1158464437L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QRestaurant restaurant = new QRestaurant("restaurant");
+    public static final QStore store = new QStore("store");
 
     public final umc.spring.domain.common.QBaseEntity _super = new umc.spring.domain.common.QBaseEntity(this);
 
     public final StringPath address = createString("address");
-
-    public final StringPath businessStatus = createString("businessStatus");
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final QLocation location;
-
     public final ListPath<Mission, QMission> missionList = this.<Mission, QMission>createList("missionList", Mission.class, QMission.class, PathInits.DIRECT2);
 
     public final StringPath name = createString("name");
 
-    public final NumberPath<Float> rating = createNumber("rating", Float.class);
+    public final QRegion region;
 
     public final ListPath<Review, QReview> reviewList = this.<Review, QReview>createList("reviewList", Review.class, QReview.class, PathInits.DIRECT2);
 
-    public final StringPath type = createString("type");
+    public final NumberPath<Float> score = createNumber("score", Float.class);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 
-    public QRestaurant(String variable) {
-        this(Restaurant.class, forVariable(variable), INITS);
+    public QStore(String variable) {
+        this(Store.class, forVariable(variable), INITS);
     }
 
-    public QRestaurant(Path<? extends Restaurant> path) {
+    public QStore(Path<? extends Store> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QRestaurant(PathMetadata metadata) {
+    public QStore(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QRestaurant(PathMetadata metadata, PathInits inits) {
-        this(Restaurant.class, metadata, inits);
+    public QStore(PathMetadata metadata, PathInits inits) {
+        this(Store.class, metadata, inits);
     }
 
-    public QRestaurant(Class<? extends Restaurant> type, PathMetadata metadata, PathInits inits) {
+    public QStore(Class<? extends Store> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.location = inits.isInitialized("location") ? new QLocation(forProperty("location")) : null;
+        this.region = inits.isInitialized("region") ? new QRegion(forProperty("region")) : null;
     }
 
 }

@@ -27,20 +27,26 @@ public class QMission extends EntityPathBase<Mission> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
-    public final NumberPath<Integer> dDay = createNumber("dDay", Integer.class);
+    public final DatePath<java.time.LocalDate> deadline = createDate("deadline", java.time.LocalDate.class);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final QRestaurant restaurant;
+    public final ListPath<umc.spring.domain.mapping.MemberMission, umc.spring.domain.mapping.QMemberMission> memberMissionList = this.<umc.spring.domain.mapping.MemberMission, umc.spring.domain.mapping.QMemberMission>createList("memberMissionList", umc.spring.domain.mapping.MemberMission.class, umc.spring.domain.mapping.QMemberMission.class, PathInits.DIRECT2);
 
-    public final NumberPath<Long> rewardPoints = createNumber("rewardPoints", Long.class);
+    public final StringPath missionSpec = createString("missionSpec");
+
+    public final NumberPath<Integer> price = createNumber("price", Integer.class);
+
+    public final QRegion region;
+
+    public final NumberPath<Integer> reward = createNumber("reward", Integer.class);
 
     public final EnumPath<umc.spring.domain.enums.MissionStatus> status = createEnum("status", umc.spring.domain.enums.MissionStatus.class);
 
+    public final QStore store;
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
-
-    public final ListPath<umc.spring.domain.mapping.UserMission, umc.spring.domain.mapping.QUserMission> userMissionList = this.<umc.spring.domain.mapping.UserMission, umc.spring.domain.mapping.QUserMission>createList("userMissionList", umc.spring.domain.mapping.UserMission.class, umc.spring.domain.mapping.QUserMission.class, PathInits.DIRECT2);
 
     public QMission(String variable) {
         this(Mission.class, forVariable(variable), INITS);
@@ -60,7 +66,8 @@ public class QMission extends EntityPathBase<Mission> {
 
     public QMission(Class<? extends Mission> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.restaurant = inits.isInitialized("restaurant") ? new QRestaurant(forProperty("restaurant"), inits.get("restaurant")) : null;
+        this.region = inits.isInitialized("region") ? new QRegion(forProperty("region")) : null;
+        this.store = inits.isInitialized("store") ? new QStore(forProperty("store"), inits.get("store")) : null;
     }
 
 }

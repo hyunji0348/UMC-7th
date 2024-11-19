@@ -7,18 +7,17 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
-import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QLocation is a Querydsl query type for Location
+ * QFoodCategory is a Querydsl query type for FoodCategory
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QLocation extends EntityPathBase<Location> {
+public class QFoodCategory extends EntityPathBase<FoodCategory> {
 
-    private static final long serialVersionUID = 1935799393L;
+    private static final long serialVersionUID = -811463128L;
 
-    public static final QLocation location = new QLocation("location");
+    public static final QFoodCategory foodCategory = new QFoodCategory("foodCategory");
 
     public final umc.spring.domain.common.QBaseEntity _super = new umc.spring.domain.common.QBaseEntity(this);
 
@@ -27,23 +26,21 @@ public class QLocation extends EntityPathBase<Location> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final StringPath locationName = createString("locationName");
-
-    public final ListPath<Restaurant, QRestaurant> restaurantList = this.<Restaurant, QRestaurant>createList("restaurantList", Restaurant.class, QRestaurant.class, PathInits.DIRECT2);
+    public final StringPath name = createString("name");
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 
-    public QLocation(String variable) {
-        super(Location.class, forVariable(variable));
+    public QFoodCategory(String variable) {
+        super(FoodCategory.class, forVariable(variable));
     }
 
-    public QLocation(Path<? extends Location> path) {
+    public QFoodCategory(Path<? extends FoodCategory> path) {
         super(path.getType(), path.getMetadata());
     }
 
-    public QLocation(PathMetadata metadata) {
-        super(Location.class, metadata);
+    public QFoodCategory(PathMetadata metadata) {
+        super(FoodCategory.class, metadata);
     }
 
 }
