@@ -16,7 +16,6 @@ import umc.spring.repository.StoreRepository.StoreRepository;
 import umc.spring.repository.ReviewRepository.ReviewRepository;
 import umc.spring.repository.MissionRepository.MissionRepository;
 
-
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -39,7 +38,7 @@ public class StoreCommandServiceImpl implements StoreCommandService {
 
     @Override
     public Review createReview(Long memberId, Long storeId, StoreRequestDTO.ReviewDto request) {
-        Review newReview = StoreReviewConverter.toReview(request);
+        Review newReview = StoreConverter.toReview(request);
 
         newReview.setMember(memberRepository.findById(memberId).get());
         newReview.setStore(storeRepository.findById(storeId).get());
@@ -49,7 +48,7 @@ public class StoreCommandServiceImpl implements StoreCommandService {
 
     @Override
     public Mission createMission(Long storeId, StoreRequestDTO.MissionDto request) {
-        Mission newMission = StoreMissionConverter.toMission(request);
+        Mission newMission = StoreConverter.toMission(request);
 
         newMission.setStore(storeRepository.findById(storeId).get());
 

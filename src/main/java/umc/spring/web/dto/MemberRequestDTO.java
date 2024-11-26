@@ -2,12 +2,13 @@ package umc.spring.web.dto;
 
 import lombok.Getter;
 import umc.spring.validation.annotation.ExistCategories;
-//import umc.spring.validation.annotation.ExistMembers;
-//import umc.spring.validation.annotation.ExistMissions;
+import umc.spring.validation.annotation.ExistMembers;
+import umc.spring.validation.annotation.ExistMissions;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
 import java.util.List;
 
 public class MemberRequestDTO {
@@ -36,9 +37,18 @@ public class MemberRequestDTO {
 
     @Getter
     public static class ChallengeMissionDto{
-////        @ExistMembers
-//        Long memberId;
-////        @ExistMissions
-//        Long missionId;
+        @ExistMembers
+        Long memberId;
+        @ExistMissions
+        Long missionId;
+    }
+
+    @Getter
+    public static class CompleteMissionDto{
+        @ExistMembers
+        Long memberId;
+        @ExistMissions
+        Long missionId;
+        Long memberMissionId;
     }
 }

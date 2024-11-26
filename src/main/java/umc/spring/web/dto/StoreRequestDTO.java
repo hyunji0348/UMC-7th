@@ -1,22 +1,24 @@
 package umc.spring.web.dto;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.List;
+
 public class StoreRequestDTO {
 
     @Getter
     public static class StoreDto{
         @NotBlank
         String name;
-        @Size(min=2, max=12)
+        @Size(min=5, max=12)
         String address;
         @NotNull
         Float score;
-//        @ExistRegion
-//        Long regionId;
+        List<Long> reviewList;
     }
 
     @Getter
@@ -32,10 +34,13 @@ public class StoreRequestDTO {
     @Getter
     public static class MissionDto{
         @NotNull
-        private Integer reward;
+        Integer reward;
         @NotNull
-        private Integer price;
+        Integer price;
         @NotNull
-        private LocalDate deadline;
+        LocalDate deadline;
+        @NotEmpty
+        String missionSpec;
     }
+
 }

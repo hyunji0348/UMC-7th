@@ -11,34 +11,26 @@ import umc.spring.validation.annotation.ExistStores;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import java.util.List;
-
 @Component
 @RequiredArgsConstructor
-public class RegionsExistValidator implements ConstraintValidator<ExistRegion, Object> {
+public class RegionsExistValidator implements ConstraintValidator<ExistRegion, List<Long>> {
 
     private final RegionRepository regionRepository;
 
     @Override
-    public boolean isValid(Object value, ConstraintValidatorContext context) {
-        if (value == null) {
-            return true; // null 값 허용 시
+    public void initialize(ExistRegion constraintAnnotation) {
+        ConstraintValidator.super.initialize(constraintAnnotation);
+    }
+
+    @Override
+    public boolean isValid(List<Long> values, ConstraintValidatorContext context) {
+        boolean isValid = values.stream()
+                .allMatch(value -> regionRepository.existsById(value));
+        if(!isValid) {
+            context.disableDefaultConstraintViolation();
+            context.buildConstraintViolationWithTemplate(ErrorStatus.REGION_NOT_FOUND.toString()).addConstraintViolation();
         }
 
-        if (value instanceof Long) {
-            return regionRepository.existsById((Long) value);
-        } else if (value instanceof List) {
-            @SuppressWarnings("unchecked")
-            List<Long> values = (List<Long>) value;
-            boolean isValid = values.stream()
-                    .allMatch(regionRepository::existsById);
-
-            if (!isValid) {
-                context.disableDefaultConstraintViolation();
-                context.buildConstraintViolationWithTemplate("존재하지 않는 지역이 포함되어 있습니다.")
-                        .addConstraintViolation();
-            }
-            return isValid;
-        }
-        return false;
+        return isValid;
     }
 }

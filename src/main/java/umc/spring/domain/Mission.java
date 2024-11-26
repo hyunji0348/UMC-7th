@@ -46,6 +46,9 @@ public class Mission extends BaseEntity {
     @JoinColumn(name = "region_id")
     private Region region;
 
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
     private List<MemberMission> memberMissionList = new ArrayList<>();
