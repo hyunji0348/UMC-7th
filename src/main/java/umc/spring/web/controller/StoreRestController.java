@@ -60,7 +60,7 @@ public class StoreRestController {
             @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다!"),
     })
     public ApiResponse<StoreResponseDTO.ReviewPreViewListDTO> getReviewList(@ExistStores @PathVariable(name = "storeId") Long storeId, @CheckPage @RequestParam(name = "page") Integer page){
-        Page<Review> reviews = storeQueryService.getReviewList(storeId,page);
+        Page<Review> reviews = storeQueryService.getReviewList(storeId,page-1);
         return ApiResponse.onSuccess(StoreConverter.reviewPreViewListDTO(reviews));
     }
 
@@ -83,7 +83,7 @@ public class StoreRestController {
             @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다!"),
     })
     public ApiResponse<StoreResponseDTO.MissionPreViewListDTO> getMissionList(@ExistStores @PathVariable(name = "storeId") Long storeId, @CheckPage @RequestParam(name = "page") Integer page){
-        Page<Mission> missions = storeQueryService.getMissionList(storeId, page);
+        Page<Mission> missions = storeQueryService.getMissionList(storeId, page-1);
         return ApiResponse.onSuccess(StoreConverter.missionPreViewListDTO(missions));
     }
 }
