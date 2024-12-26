@@ -1,18 +1,13 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.3.4'
-	id 'io.spring.dependency-management' version '1.1.6'
-	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+	id 'org.springframework.boot' version '3.0.0'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	// id "com.ewerk.gradle.plugins.querydsl" version "1.0.10" 삭제
 }
 
-group = 'umc'
-version = '0.0.1-SNAPSHOT'
-
-java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
-}
+group = 'com.example'
+version = '1.0.0'
+sourceCompatibility = '17'
 
 configurations {
 	compileOnly {
@@ -54,37 +49,20 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 }
 
-sourceSets {
-	main {
-		java {
-			srcDirs = ['src/main/java', 'src/main/resources', 'src/main/generated']
-		}
-	}
-}
-
 tasks.named('test') {
 	useJUnitPlatform()
 }
 
-// Querydsl 설정부
-def generated = 'src/main/generated'
-
-querydsl {
-	jpa = true
-	querydslSourcesDir = file(generated)
-}
+def querydslDir = "src/main/generated"
 
 sourceSets {
-	main.java.srcDir generated
+	main.java.srcDirs += [ querydslDir ]
 }
 
-compileQuerydsl{
-	options.annotationProcessorPath = configurations.querydsl
+tasks.withType(JavaCompile) {
+	options.annotationProcessorGeneratedSourcesDirectory = file(querydslDir)
 }
 
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
-	querydsl.extendsFrom compileClasspath
+clean.doLast {
+	file(querydslDir).deleteDir()
 }
